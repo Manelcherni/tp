@@ -1,0 +1,220 @@
+//Adresse//
+
+
+public class adresse {
+     public String couv;
+    public String ville;
+    public int codpost;
+
+   public adresse(){
+       couv="";
+       ville="";
+       codpost=0;}
+    public adresse( String v,String c,int code){
+        couv=c;
+        ville=v;
+        codpost=code;}
+
+
+       public void afficheadress(){
+
+           System.out.println(ville+"/"+couv+"/"+codpost);
+
+
+       }
+       public void modifier(int c){
+
+       codpost=c;
+
+
+
+
+       }
+
+
+   }
+
+
+//bureau//
+
+
+public class bureau {
+
+
+    public int code;
+    public String nomb;
+    public chercheur cherchb[];
+     public bureau(){
+     }
+     public bureau(int c,String nom,chercheur ch[]){
+         code=c;
+         nomb=nom;
+         cherchb=new chercheur[5];
+         cherchb=ch;}
+         void affichebureau(){
+             System.out.println(" code= " +code+ "nom = "+nomb);
+             int i;
+             int n=this.cherchb.length;
+             for(i=0;i<n;i++){
+
+                 cherchb[i].affichchercheur();
+
+
+             }
+
+
+
+         }
+
+}
+
+
+
+
+//chercheur//
+
+
+
+public class chercheur {
+
+
+    public String nom;
+    public String poste;
+    public int numord;
+    public static int  nb=0;
+    public chercheur(){
+        nom="";
+        poste="";
+        numord=0;
+    nb++;}
+    public chercheur(String n,String p,int num){
+        nom=n;
+        poste=p;
+        numord=num;
+        nb++;
+
+    }
+
+
+    void affichchercheur(){
+            System.out.println("nom= "+nom+" poste= "+poste+" numero d ordinateur = "+numord);
+
+
+        }
+
+        public boolean comparer(chercheur c) {
+            if (this.numord == c.numord) {
+                if (this.nom == c.nom) {
+                    if (this.poste == c.poste) {
+                        return true;
+                    }
+                }
+
+
+            }
+            return false;
+
+
+        }
+        public void modifier(int c){
+
+        numord=c;
+
+        }
+        void ajouter(String nom,String poste,int numord){
+
+        this.nom=nom;
+        this.poste=poste;
+        this.numord=numord;
+
+
+
+        }
+
+
+}
+
+
+//laboratoire//
+
+
+
+public class laboratoire {
+
+
+    public String nomlabo;
+    public String specialite;
+    public adresse adreslabo;
+    public bureau nbbureau[];
+    public laboratoire(String nom,String sp,adresse adrs,bureau B[]){
+
+        nomlabo=nom;
+        specialite=sp;
+        adreslabo=adrs;
+        nbbureau=new bureau[50];
+        nbbureau=B;
+
+
+    }
+    void affichelabo() {
+
+
+        System.out.println("nom= " + nomlabo + " specialite= " + specialite);
+        this.adreslabo.afficheadress();
+        int i;
+        int n=nbbureau.length;
+        for (i = 0; i < n; i++)
+        {
+
+            this.nbbureau[i].affichebureau();
+        }
+    }
+
+
+}
+
+
+
+//test//
+
+
+
+
+public class test {
+
+    public static void main(String[] args) {
+
+       adresse adrs1=new adresse();
+        adrs1.ville="Le kef";
+       adrs1.couv="kef centre";
+       adrs1.codpost=7100;
+       adrs1.afficheadress();
+        adrs1.modifier(1987);
+        adrs1.afficheadress();
+        adresse adr2=new adresse("kef","sers",7100);
+        adr2.afficheadress();
+        adr2.modifier(10100);
+        adr2.afficheadress();
+        chercheur chr1=new chercheur();
+        chr1.nom="aziz";
+        chr1.poste="ingenieur";
+        chercheur chr2=new chercheur("ahlem","ingenieur++",06);
+        chr2.affichchercheur();
+        System.out.println("nombre de chercheur "+chr1.nb);
+        chr2.comparer(chr1);
+        chr2.modifier(627866);
+        chr1.modifier(777777);
+        chercheur chr3=new chercheur();
+        chr3.ajouter("laila","étudiante",10980);
+        chr3.affichchercheur();
+        System.out.println("nombre de chercheur "+chr3.nb);
+        chercheur ch[]={chr1,chr2,chr3};
+        bureau b1=new bureau(111,"bur1",ch);
+        bureau b2=new bureau(121,"bur1",ch);
+        bureau bt[]={b1,b2};
+        laboratoire l=new laboratoire("lab1","spc1",adrs1,bt);
+        l.affichelabo();
+
+    }
+
+}
