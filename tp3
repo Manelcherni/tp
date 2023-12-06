@@ -1,3 +1,5 @@
+//Test person//
+
 public class testperson {
         public static void main(String[] args) {
             person person1 = new person("D", "Johnson", 11, 6, 1999);
@@ -23,3 +25,154 @@ public class testperson {
     }
 
 
+//Point//
+
+public class point {
+        public int abs;
+        public int ord;
+        public static int nombre = 0;
+        public int numero;
+        public point() {
+            this.abs = 0;
+            this.ord = 0;
+            nombre++;
+            this.numero = nombre;
+        }
+
+        public point(int u, int v) {
+            this.abs = u;
+            this.ord = v;
+            nombre++;
+            this.numero = nombre;
+        }
+
+        public void affichepoint() {
+            System.out.println("point " + numero + " : Coordonnées (" + abs + ", " + ord + ")");
+        }
+
+        public boolean origine() {
+            return (abs == 0 && ord == 0);
+        }
+
+        public boolean egale(point q) {
+            return (this.abs == q.getAbs() && this.ord == q.getOrd());
+        }
+
+        public void setCoordonnepoint(point p) {
+            this.abs = p.getAbs();
+            this.ord = p.getOrd();
+        }
+
+        public point symetrie() {
+            return new point(-abs, -ord);
+        }
+
+        public int getAbs() {
+            return abs;
+        }
+
+        public int getOrd() {
+            return ord;
+        }
+
+
+        public int getNumero() {
+            return numero;
+        }
+
+        public static int getNombre() {
+            return nombre;
+        }
+    }
+
+
+
+//person//
+
+
+public class person {
+        public String name;
+        public String firstName;
+        public int dayNaiss;
+        public int monthNaiss;
+       public int yearNaiss;
+        public person(String name, String firstName, int dayNaiss, int monthNaiss, int yearNaiss) {
+            this.name = name;
+            this.firstName = firstName;
+            this.dayNaiss = dayNaiss;
+            this.monthNaiss = monthNaiss;
+            this.yearNaiss = yearNaiss;
+        }
+        public void setName(String name) {
+            this.name = name;
+        }
+        public void setFirstName(String firstName) {
+            this.firstName = firstName;
+        }
+
+
+        public void setDateNaiss(int dayNaiss, int monthNaiss, int yearNaiss) {
+            this.dayNaiss = dayNaiss;
+            this.monthNaiss = monthNaiss;
+            this.yearNaiss = yearNaiss;
+        }
+
+        public int ageEn2023() {
+            int age = 2023 - yearNaiss;
+            if (monthNaiss > 12 || (monthNaiss == 12 && dayNaiss > 31)) {
+                return -1;
+            }
+            if (monthNaiss == 12) {
+                if (dayNaiss > 31) {
+                    return -1;
+                }
+            } else if (monthNaiss == 11 || monthNaiss == 9 || monthNaiss == 6 || monthNaiss == 4) {
+                if (dayNaiss > 30) {
+                    return -1;
+                }
+            } else if (monthNaiss == 2) {
+                if (yearNaiss % 4 == 0) {
+                    if (dayNaiss > 29) {
+                        return -1;
+                    }
+                } else {
+                    if (dayNaiss > 28) {
+                        return -1;
+                    }
+                }
+            } else {
+                if (dayNaiss > 31) {
+                    return -1;
+                }
+            }
+            return age;
+        }
+    }
+
+
+
+//Test point//
+
+
+
+public class Testpoint {
+        public static void main(String[] args) {
+            point p1 = new point(2, 3);
+            point p2 = new point(-1, -4);
+            point p3 = new point();
+
+            p1.affichepoint();
+            p2.affichepoint();
+            p3.affichepoint();
+
+            System.out.println("Est-ce que p1 est à l'origine ? " + p1.origine());
+            System.out.println("Est-ce que p2 est à l'origine ? " + p2.origine());
+
+            System.out.println("Est-ce que p1 est égal à p2 ? " + p1.egale(p2));
+
+            point p4 = p1.symetrie();
+            p4.affichepoint();
+
+            System.out.println("Nombre de points créés : " + point.getNombre());
+        }
+    }
