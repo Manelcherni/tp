@@ -1,0 +1,325 @@
+//caisse//
+
+
+public class Caisse  extends Employe{
+    public int numc;
+
+    public Caisse(int ident, String nom, String adrs, double nbhm, int numc) {
+        super(ident, nom, adrs, nbhm);
+        this.numc = numc;
+    }
+
+public void Afficheemploye(){
+
+        super.Afficheemploye();
+        System.out.println("le le numero de caisse"+numc);
+    }
+
+    public double Salaircaiss()
+    {
+      double sal=0;
+        if(nbhm>180)
+            sal+=(nbhm-180)*5+1.15;
+else
+sal=nbhm*5;
+
+        return sal;
+
+
+    }
+}
+
+
+
+
+//Employee//
+
+
+public class Caisse  extends Employe{
+    public int numc;
+
+    public Caisse(int ident, String nom, String adrs, double nbhm, int numc) {
+        super(ident, nom, adrs, nbhm);
+        this.numc = numc;
+    }
+
+public void Afficheemploye(){
+
+        super.Afficheemploye();
+        System.out.println("le le numero de caisse"+numc);
+    }
+
+    public double Salaircaiss()
+    {
+      double sal=0;
+        if(nbhm>180)
+            sal+=(nbhm-180)*5+1.15;
+else
+sal=nbhm*5;
+
+        return sal;
+
+
+    }
+}
+
+
+//Magasin//
+
+
+public class Magasin {
+    public int ident;
+    public String libel;
+    public String adrs;
+    public int cap = 50;
+    public Produit[] produits = new Produit[50];
+    int nbrproduit = 0;
+    int nbrempl=0;
+    public int numero;
+    public static int cpt;
+    public Employe[] employ = new Employe[20];
+
+
+    public Magasin(int ident, String libel, String adrs) {
+        this.libel = libel;
+        this.ident = ident;
+        this.adrs = adrs;
+
+    }
+
+    public Magasin(int ident, String adrs, int cap) {
+
+        this.ident = ident;
+        this.adrs = adrs;
+        this.cap = cap;
+        numero = cpt;
+        cpt++;
+    }
+
+
+    public void Ajouter(Produit pds) {
+
+        if (nbrproduit <= cap) {
+            produits[nbrproduit] = pds;
+            nbrproduit++;
+        } else
+            System.out.println(" impbossible");
+
+
+    }
+
+    public void Ajoutempl(Employe empl) {
+        if (nbrempl<=20){
+            employ[nbrempl]=empl;
+
+            nbrempl++;
+        }
+
+
+        }
+
+
+   public  void Affiche(){
+int i;
+       System.out.println("identifiant mgs : "+ident+" adresse: "+adrs+"capacite"+cap);
+       for(i=0;i<nbrproduit;i++)
+       {
+           produits[i].Affichep();
+
+       }
+
+
+
+    }
+
+    public  void Affichetout() {
+        int i;
+        System.out.println("identifiant mgs : " + ident +"nom :" +libel+" adresse: " + adrs + "capacite" + cap);
+        for (i = 0; i < nbrproduit; i++) {
+            produits[i].Affichep();
+
+        }
+        for (i = 0; i < nbrempl; i++) {
+            employ[i].Afficheemploye();
+
+        }
+    }
+
+
+}
+
+
+
+//Produit//
+
+
+public class Produit {
+    public int ident;
+    public String libel;
+    public String marque;
+    public Double prix;
+
+    public Produit(int ident, String libel, String marque, Double prix) {
+        this.ident = ident;
+        this.libel = libel;
+        this.marque = marque;
+        this.prix = prix;
+    }
+
+    public void Affichep() {
+        System.out.println("Prosuit=[" + ident + "/" + libel + "/" + marque + "/" + prix + "]");
+
+    }
+
+    public int getIdent() {
+        return ident;
+    }
+
+    public void setIdent(int ident) {
+        this.ident = ident;
+    }
+
+    public String getLibel() {
+        return libel;
+    }
+
+    public void setLibel(String libel) {
+        this.libel = libel;
+    }
+
+    public String getMarque() {
+        return marque;
+    }
+
+    public void setMarque(String marque) {
+        this.marque = marque;
+    }
+
+    public Double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(Double prix) {
+        this.prix = prix;
+    }
+
+    public boolean Comparer(Produit pdt) {
+
+        if((this.ident == pdt.ident) && (this.libel == pdt.libel) && (this.prix== pdt.prix))
+            return false;
+        else
+            return  true;
+
+
+    }
+    public boolean comparer1(Produit pdt1,Produit pdt2) {
+
+        if((pdt1.ident == pdt2.ident) && (pdt1.libel == pdt2.libel) && (pdt1.prix== pdt2.prix))
+
+
+            return false;
+        else
+
+            return  true;
+
+
+    }
+
+}
+
+
+//responsable//
+
+
+public class Respensable extends Employe{
+
+
+    public double prime;
+
+    public Respensable(int ident, String nom, String adrs, double nbhm, double prime) {
+        super(ident, nom, adrs, nbhm);
+        this.prime = prime;
+    }
+
+ public void Afficheemploye(){
+
+        super.Afficheemploye();
+        System.out.println("le  prime: "+prime);
+    }
+
+    public double Salairerespesnsable()
+    {
+        double sal=nbhm*10;
+        if(nbhm>160)
+            sal+=(nbhm-160)*10*1.2;
+
+
+            return sal+prime;
+
+
+    }
+
+
+}
+
+
+//Test magasin//
+
+public class Respensable extends Employe{
+
+
+    public double prime;
+
+    public Respensable(int ident, String nom, String adrs, double nbhm, double prime) {
+        super(ident, nom, adrs, nbhm);
+        this.prime = prime;
+    }
+
+ public void Afficheemploye(){
+
+        super.Afficheemploye();
+        System.out.println("le  prime: "+prime);
+    }
+
+    public double Salairerespesnsable()
+    {
+        double sal=nbhm*10;
+        if(nbhm>160)
+            sal+=(nbhm-160)*10*1.2;
+
+
+            return sal+prime;
+
+
+    }
+
+
+}
+
+//vendeur//
+
+
+public class Vendeur  extends Employe{
+
+
+    public  double tauxdev;
+
+    public Vendeur(int ident, String nom, String adrs, double nbhm, double tauxdev) {
+        super(ident, nom, adrs, nbhm);
+        this.tauxdev = tauxdev;
+    }
+public void Afficheemploye(){
+
+        super.Afficheemploye();
+        System.out.println("le taux de vente: "+tauxdev);
+    }
+
+    public double Salairvend()
+    {
+        double sal=450*tauxdev;
+
+return sal;
+
+    }
+
+}
